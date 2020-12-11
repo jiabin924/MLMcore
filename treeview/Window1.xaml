@@ -1,0 +1,15 @@
+﻿<Window x:Class="Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Window1" Height="300" Width="1762">
+    <Grid>
+        <TreeView ScrollViewer.CanContentScroll="True" Margin="-345,0,-354,-12" Name="jiabin">
+            <TreeViewItem Header="Root" IsExpanded="true" DataContext="{Binding}" HorizontalAlignment="Center" Name="TreeViewItem1">
+            </TreeViewItem>
+        </TreeView>
+        <Label Content="ffdf" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="xianshi" VerticalAlignment="Top" />
+        <Label Height="28" HorizontalAlignment="Left" Margin="71,12,0,0" Name="shuzi" VerticalAlignment="Top" Width="62" />
+        <Label Height="28" HorizontalAlignment="Left" Margin="165,12,0,0" Name="jiangjing" VerticalAlignment="Top" />
+        <Label Content="0" Height="28" HorizontalAlignment="Left" Margin="194,12,0,0" Name="fenf" VerticalAlignment="Top" />
+    </Grid>
+</Window>

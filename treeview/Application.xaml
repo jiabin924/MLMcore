@@ -1,0 +1,159 @@
+﻿<Application
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ x:Class="UntitledProject7.App"
+ StartupUri="Window1.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2006" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+
+    <Application.Resources>
+        <Style x:Key="TreeViewItemFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Width" Value="19"/>
+            <Setter Property="Height" Value="13"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Width="19" Height="13" Background="Transparent">
+                            <Border SnapsToDevicePixels="true" Width="9" Height="9" BorderBrush="#FF7898B5" BorderThickness="1" CornerRadius="1">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                                        <GradientStop Color="White" Offset=".2"/>
+                                        <GradientStop Color="#FFC0B7A6" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Path Margin="1,1,1,1" x:Name="ExpandPath" Fill="Black" Data="M 0 2 L 0 3 L 2 3 L 2 5 L 3 5 L 3 3 L 5 3 L 5 2 L 3 2 L 3 0 L 2 0 L 2 2 Z"/>
+                            </Border>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Data" TargetName="ExpandPath" Value="M 0 2 L 0 3 L 5 3 L 5 2 Z"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type TreeViewItem}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding Path=HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding Path=VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Padding" Value="1,0,0,0"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource TreeViewItemFocusVisual}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TreeViewItem}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.502*"/>
+                                <ColumnDefinition Width="Auto" MinWidth="39"/>
+                                <ColumnDefinition Width="Auto" MinWidth="17"/>
+                                <ColumnDefinition Width="Auto" MinWidth="36"/>
+                                <ColumnDefinition Width="0.498*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Rectangle Stroke="#FFe1e1e1" RadiusX="10" RadiusY="10"
+  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+  Width="Auto" Height="Auto" x:Name="Rectangle" Grid.ColumnSpan="3" Grid.Column="1">
+                                <Rectangle.BitmapEffect>
+                                    <DropShadowBitmapEffect ShadowDepth="2"/>
+                                </Rectangle.BitmapEffect>
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#FFF9F9F9" Offset="0"/>
+                                        <GradientStop Color="#FFd9d9d9" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Rectangle Stroke="{x:Null}" Margin="3,14,3,3" 
+  RadiusX="14" RadiusY="10" HorizontalAlignment="Stretch" 
+  VerticalAlignment="Stretch" Width="Auto" Height="Auto" Grid.ColumnSpan="3" x:Name="innerRectangle" Grid.Column="1">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#FFE8E8E8" Offset="0"/>
+                                        <GradientStop Color="#FFE4E4E4" Offset="0.2"/>
+                                        <GradientStop Color="#FFbdbdbd" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                                <Rectangle.BitmapEffect>
+                                    <BlurBitmapEffect Radius="1" KernelType="Box"/>
+                                </Rectangle.BitmapEffect>
+                            </Rectangle>
+                            <Path Grid.Column="2" Grid.Row="2" VerticalAlignment="Stretch" Height="Auto" Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FFBD2525" Data="M131.25983,57.91176 L131.17976,67.10708" StrokeThickness="2" Grid.RowSpan="2" Margin="7.5,1,7.42,0"/>
+                            <Border SnapsToDevicePixels="true" x:Name="Bd" Grid.Column="1" Grid.Row="3" CornerRadius="5,5,5,5" BorderBrush="#FFBD2525" BorderThickness="2,2,2,2" Background="{x:Null}" Grid.ColumnSpan="3">
+                                <StackPanel>
+                                    <TextBlock SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" x:Name="PART_Header" Text="{TemplateBinding Header}" Width="Auto" VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FFFFFFFF"/>
+                                </StackPanel>
+                            </Border>
+                            <Path Grid.Column="2" Grid.Row="4" VerticalAlignment="Stretch" Height="Auto" Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FFBD2525" Data="M131.25983,57.91176 L131.17976,67.10708" StrokeThickness="2" Width="2" HorizontalAlignment="Center" Visibility="Hidden"/>
+                            <StackPanel x:Name="ItemsHost" Orientation="Horizontal" IsItemsHost="True" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5" HorizontalAlignment="Center"/>
+                            <ToggleButton x:Name="Expander" Grid.Column="2" Grid.Row="2" Style="{StaticResource ExpandCollapseToggleStyle}" IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press" Margin="-3.79,2.695,-4.21,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="Auto" Height="Auto"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True" SourceName="innerRectangle">
+                                <Setter Property="Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                            <GradientStop Color="#FFE8E8E8" Offset="0"/>
+                                            <GradientStop Color="#FFE4E4E4" Offset="0.2"/>
+                                            <GradientStop Color="#FF67A5FF" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsExpanded" Value="false">
+                                <Setter Property="Visibility" TargetName="ItemsHost" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="IsExpanded" Value="False"/>
+                            <Trigger Property="HasItems" Value="false">
+                                <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                            <GradientStop Color="#FFE8E8E8" Offset="0"/>
+                                            <GradientStop Color="#FFE4E4E4" Offset="0.2"/>
+                                            <GradientStop Color="#FFFF9700" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="true"/>
+                                    <Condition Property="IsSelectionActive" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- New -->
+
+
+    </Application.Resources>
+
+</Application>
+
